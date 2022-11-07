@@ -9,7 +9,7 @@ User = get_user_model()
 
 class UserList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    query = User.objects.all()
-    serializer = UserCreateSerializer
+    queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
     name = 'user-list'
 
