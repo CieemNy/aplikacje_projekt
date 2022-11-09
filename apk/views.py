@@ -19,3 +19,11 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     name = 'user-details'
+
+class PostList(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    name = 'forum-post-list'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
