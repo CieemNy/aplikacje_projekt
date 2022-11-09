@@ -10,4 +10,5 @@ urlpatterns = [
     path('posts', views.PostList.as_view(), name='forum-post-list'),
     path('posts/add', views.CreatePost.as_view(), name='forum-post-create'),
     path('posts/edit/<int:pk>', views.PostEdit.as_view(), name='forum-post-edit'),
+    path('posts/delete/<int:pk>', views.PostDelete.as_view(), name='forum-post-delete'),
 ]
