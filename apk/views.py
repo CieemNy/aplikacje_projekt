@@ -51,3 +51,11 @@ class PostDelete(generics.DestroyAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class PostDetail(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    name = 'forum-post-detail'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
