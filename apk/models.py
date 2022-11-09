@@ -50,3 +50,13 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+class Post(models.Model):
+    user = models.ForeignKey(UserAccount, models.CASCADE)
+    title = models.CharField(max_length=255)
+    content = models.CharField(max_length=255)
+    addedDate = models.DateField(default=datetime.date.today)
+
+    def __str__(self):
+        return self.title
+    
