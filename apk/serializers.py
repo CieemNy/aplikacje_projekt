@@ -11,7 +11,7 @@ class UserCreateSerializer(UserCreateSerializer):
 
     class Meta(UserCreateSerializer.Meta):
         model = User
-        fields = ('id', 'email', 'username', 'name', 'surname', 'password')
+        fields = ('id', 'email', 'username', 'name', 'surname', 'password', 'posts')
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
