@@ -27,3 +27,11 @@ class PostList(generics.ListAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class CreatePost(generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    name = 'forum-post-create'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
