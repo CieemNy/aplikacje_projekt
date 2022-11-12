@@ -2,9 +2,18 @@ from django.shortcuts import render
 from .models import *
 from .serializers import *
 from rest_framework import generics, permissions
-
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 User = get_user_model()
+
+
+class EditPermissions(BasePermission):
+    message = "Only owner of post can editing post/comment"
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
+        return obj.user == request.user
 
 
 class UserList(generics.ListCreateAPIView):
