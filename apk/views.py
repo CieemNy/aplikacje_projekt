@@ -7,6 +7,8 @@ from rest_framework.permissions import SAFE_METHODS, BasePermission
 User = get_user_model()
 
 
+# permission: only owner can edit post/comment
+
 class EditPermissions(BasePermission):
     message = "Only owner of post/comment can editing post/comment"
 
@@ -15,6 +17,8 @@ class EditPermissions(BasePermission):
             return True
         return obj.user == request.user
 
+
+# permission: only owner can delete post/comment
 
 class DeletePermissions(BasePermission):
     message = "Only owner of post/comment can delete post/comment"
@@ -25,12 +29,16 @@ class DeletePermissions(BasePermission):
         return obj.user == request.user
 
 
+# endpoint: display list of users
+
 class UserList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     name = 'user-list'
 
+
+# endpoint: display, edit, delete user details
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -44,6 +52,8 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
         instance.save()
 
 
+# endpoint: display list of posts
+
 class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -52,6 +62,8 @@ class PostList(generics.ListAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
+# endpoint: create post
 
 class CreatePost(generics.CreateAPIView):
     queryset = Post.objects.all()
@@ -62,7 +74,10 @@ class CreatePost(generics.CreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class PostEdit(generics.UpdateAPIView):
+# endpoint: edit single post
+
+class PostEdit(generics.UpdateAPIView, EditPermissions):
+    permission_classes = [EditPermissions]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     name = 'forum-post-edit'
@@ -71,7 +86,10 @@ class PostEdit(generics.UpdateAPIView):
         serializer.save(user=self.request.user)
 
 
-class PostDelete(generics.DestroyAPIView):
+# endpoint: delete single post
+
+class PostDelete(generics.DestroyAPIView, DeletePermissions):
+    permission_classes = [DeletePermissions]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     name = 'forum-post-delete'
@@ -79,6 +97,8 @@ class PostDelete(generics.DestroyAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
+# endpoint: display single post
 
 class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
