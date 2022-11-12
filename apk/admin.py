@@ -5,6 +5,7 @@ from .models import UserAccount, Post
 class UserAccountAdmin(admin.ModelAdmin):
     list_display = ['id', 'email', 'username', 'name', 'surname']
 
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ['user', 'title', 'content', 'addedDate']
 

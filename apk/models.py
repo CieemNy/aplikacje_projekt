@@ -52,6 +52,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+
 class Post(models.Model):
     user = models.ForeignKey(UserAccount, models.CASCADE)
     title = models.CharField(max_length=255)

@@ -13,6 +13,7 @@ class UserCreateSerializer(UserCreateSerializer):
         model = User
         fields = ('id', 'email', 'username', 'name', 'surname', 'password', 'posts')
 
+
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
 
