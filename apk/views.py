@@ -20,6 +20,11 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserCreateSerializer
     name = 'user-details'
 
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+
 
 class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
