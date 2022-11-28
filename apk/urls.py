@@ -12,4 +12,5 @@ urlpatterns = [
     path('posts/edit/<int:pk>', views.PostEdit.as_view(), name='forum-post-edit'),
     path('posts/delete/<int:pk>', views.PostDelete.as_view(), name='forum-post-delete'),
     path('posts/<int:pk>', views.PostDetail.as_view(), name='forum-post-detail'),
+    path('posts/<str:string>', views.post_title, name='search-post-title'),
 ]
