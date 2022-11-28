@@ -18,4 +18,5 @@ urlpatterns = [
     # comments endpoints
     path('posts/<int:pk>/comments/add', CommentAdd.as_view(), name='comment-post-add'),
     path('posts/<int:pk>/comments', ListCommentsPost.as_view(), name='comments-post-display'),
+    path('comment/<int:pk>', views.CommentDetail.as_view(), name='comment-detail')
 ]

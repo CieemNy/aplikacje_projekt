@@ -121,3 +121,14 @@ class ListCommentsPost(APIView):
         comments = Comment.objects.filter(post=post)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
+
+
+# endpoint: display single comment
+
+class CommentDetail(generics.RetrieveAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    name = 'comment-detail'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, post=self.request.post)
