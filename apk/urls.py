@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib import admin
 from . import views
-from .views import CommentAdd
+from .views import CommentAdd, ListCommentsPost
 
 admin.site.site_url = 'http://127.0.0.1:8000/apk/'
 urlpatterns = [
@@ -16,5 +16,6 @@ urlpatterns = [
     path('posts/<int:pk>', views.PostDetail.as_view(), name='forum-post-detail'),
     path('posts/<str:string>', views.post_title, name='search-post-title'),
     # comments endpoints
-    path('posts/<int:pk>/comments/add', CommentAdd.as_view(), name='forum-post-detail'),
+    path('posts/<int:pk>/comments/add', CommentAdd.as_view(), name='comment-post-add'),
+    path('posts/<int:pk>/comments', ListCommentsPost.as_view(), name='comments-post-display'),
 ]

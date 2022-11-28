@@ -111,3 +111,13 @@ class CommentAdd(APIView):
         )
         serializer = CommentSerializer(new_comment)
         return Response(serializer.data)
+
+
+# endpoint: display comments which are assigned to specific post
+
+class ListCommentsPost(APIView):
+    def get(self, request, pk):
+        post = Post.objects.get(id=pk)
+        comments = Comment.objects.filter(post=post)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
