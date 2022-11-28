@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from .models import *
-from .serializers import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework import generics, permissions
+from .serializers import *
 from .permissions import *
+from .models import *
 
 User = get_user_model()
 
@@ -85,3 +86,12 @@ class PostDetail(generics.RetrieveAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+# endpoint: searching for posts by title
+@api_view(['GET'])
+def post_title(request, string):
+    if request.method == 'GET':
+        posts = Post.objects.all().filter(title__icontains=string)
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
