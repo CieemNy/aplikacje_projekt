@@ -12,15 +12,22 @@ Damian Banach & Bartek Gryciuk
 ![alt text](https://github.com/CieemNy/aplikacje_projekt/blob/feat_comments/db_schema.png?raw=true)
 
 ## Endpointy
-| Endpoint | HTTP Method | Wynik |
-| :--------: | :--------: | :--------: |
-| `apk/users` | GET | Wyświetla listę użytkowników |
-| `apk/users/:id` | GET | Wyświetla dane wybranego użytkownika |
-| `apk/posts` | GET | Wyświetla posty |
-| `apk/posts/:id` | GET | Wyświetla szczegóły wybranego postu |
-| `apk/posts/:string` | GET | Wyświetla postu wedle wpisanego ciągu znaków |
-| `apk/posts/add` | POST | Dodawanie postu |
-| `apk/posts/edit/:id` | PUT | Edycja postu |
-| `apk/posts/delete/:id` | DELETE | Usuwanie postu |
-| `apk/posts/:id/comments/add` | POST | Dodawanie komentarza do postu |
-| `apk/posts/:id/comments` | GET | Wyświetla komentarze wybranego postu |
+
+W ramach projektu zostały stworzone następujące endpoint'y
+
+|           Endpoint           | HTTP Method |                    Wynik                     |
+|:----------------------------:|:-----------:|:--------------------------------------------:|
+|        `auth/users/`         |    POST     |                 Rejestracja                  |
+|      `auth/jwt/create/`      |    POST     |                  Logowanie                   |
+|       `auth/users/me/`       |     GET     |     Informacje o zalogowanym użytkowniku     |
+|         `apk/users`          |     GET     |         Wyświetla listę użytkowników         |
+|       `apk/users/:id`        |     GET     |     Wyświetla dane wybranego użytkownika     |
+|         `apk/posts`          |     GET     |               Wyświetla posty                |
+|       `apk/posts/:id`        |     GET     |     Wyświetla szczegóły wybranego postu      |
+|     `apk/posts/:string`      |     GET     | Wyświetla postu wedle wpisanego ciągu znaków |
+|       `apk/posts/add`        |    POST     |               Dodawanie postu                |
+|     `apk/posts/edit/:id`     |     PUT     |                 Edycja postu                 |
+|    `apk/posts/delete/:id`    |   DELETE    |                Usuwanie postu                |
+| `apk/posts/:id/comments/add` |    POST     |        Dodawanie komentarza do postu         |
+|   `apk/posts/:id/comments`   |     GET     |     Wyświetla komentarze wybranego postu     |
+|        `comment/:id`         |     GET     |    Wyświetla szczegóły danego komentarza     |
