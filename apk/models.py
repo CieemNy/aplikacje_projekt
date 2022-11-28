@@ -61,3 +61,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=False, blank=False)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    content = models.CharField(max_length=255)
+    addedDate = models.DateField(default=datetime.date.today)
+
+    def __str__(self):
+        return "Komentarz"
