@@ -143,3 +143,14 @@ class CommentEdit(generics.UpdateAPIView, EditPermissions):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
+
+# endpoint: delete comment
+
+class CommentDelete(generics.DestroyAPIView):
+    permission_classes = [DeletePermissions]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    name = 'comment-delete'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, post=self.request.post)
