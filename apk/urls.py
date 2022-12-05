@@ -18,5 +18,8 @@ urlpatterns = [
     # comments endpoints
     path('posts/<int:pk>/comments/add', CommentAdd.as_view(), name='comment-post-add'),
     path('posts/<int:pk>/comments', ListCommentsPost.as_view(), name='comments-post-display'),
-    path('comment/<int:pk>', views.CommentDetail.as_view(), name='comment-detail')
+    path('comment/<int:pk>', views.CommentDetail.as_view(), name='comment-detail'),
+    path('comment/edit', views.CommentEdit.as_view(), name='comment-edit'),
+    path('comment/delete', views.CommentDelete.as_view(), name='comment-delete'),
+    path('comments/<int:pk>', views.user_comments, name='search-user-comments')
 ]
