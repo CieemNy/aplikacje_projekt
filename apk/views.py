@@ -154,3 +154,12 @@ class CommentDelete(generics.DestroyAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
+
+# endpoint: display comments with write user
+
+@api_view(['GET'])
+def user_comments(request, pk):
+    if request.method == 'GET':
+        comments = Comment.objects.all().filter(user=pk)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
