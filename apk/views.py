@@ -132,3 +132,14 @@ class CommentDetail(generics.RetrieveAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
+
+# endpoint: edit comment
+
+class CommentEdit(generics.UpdateAPIView, EditPermissions):
+    permission_classes = [EditPermissions]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    name = 'comment-edit'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, post=self.request.post)
