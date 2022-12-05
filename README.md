@@ -30,4 +30,8 @@ W ramach projektu zostały stworzone następujące endpoint'y
 |    `apk/posts/delete/:id`    |   DELETE    |                Usuwanie postu                |
 | `apk/posts/:id/comments/add` |    POST     |        Dodawanie komentarza do postu         |
 |   `apk/posts/:id/comments`   |     GET     |     Wyświetla komentarze wybranego postu     |
-|        `comment/:id`         |     GET     |    Wyświetla szczegóły danego komentarza     |
+|      `apk/comment/:id`       |     GET     |    Wyświetla szczegóły danego komentarza     |
+|        `apk/comment/edit`        |     PUT     |              Edycja komentarza               |
+|       `apk/comment/delete`       |   DELETE    |             Usuwanie komentarza              |
+|        `apk/comments/:id`        |     GET     |       Wyświetla komentarze użytkownika       |
+
