@@ -133,6 +133,7 @@ class CommentDetail(generics.RetrieveAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
 
+
 # endpoint: edit comment
 
 class CommentEdit(generics.UpdateAPIView, EditPermissions):
@@ -144,6 +145,7 @@ class CommentEdit(generics.UpdateAPIView, EditPermissions):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
 
+
 # endpoint: delete comment
 
 class CommentDelete(generics.DestroyAPIView):
@@ -154,6 +156,7 @@ class CommentDelete(generics.DestroyAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, post=self.request.post)
+
 
 # endpoint: display comments with write user
 
